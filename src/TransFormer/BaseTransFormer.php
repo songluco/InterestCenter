@@ -63,12 +63,12 @@ class BaseTransformer
             $singleData['order_id'] = isset($item['order_id']) ? $item['order_id'] : '';
 
             if(in_array('',$singleData)){
-                return funcReturn(MsgCode::ERROR_CODE_DATA_MISSING, '缺少数据');
+                return funcReturn(MsgCode::ERROR_CODE_DATA_MISSING, '订单信息不足!订单ID:' . $singleData['order_id']);
             }
 
             //订单ID,投资人ID,订单金额
             if(!is_int($singleData['order_id']) || !is_int($singleData['user_id']) || !is_numeric($singleData['order_amount'])){
-                return funcReturn(MsgCode::ERROR_CODE_DATA_FORMAT, '订单数据格式有误!产品ID:' . $singleData['project_id']);
+                return funcReturn(MsgCode::ERROR_CODE_DATA_FORMAT, '订单数据格式有误!订单ID:' . $singleData['order_id']);
             }
         }
 
