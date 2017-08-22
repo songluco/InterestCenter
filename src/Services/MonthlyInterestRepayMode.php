@@ -27,7 +27,7 @@ class MonthlyInterestRepayMode extends BaseCalculate
     public function buildUserPayPlans()
     {
         //对获取到的数据进行验证和转换
-        $transferRes = $this->transferRecordData($this->project, $this->orders);
+        $transferRes = $this->transferRecordData();
         if ($transferRes['code']) {
             return $transferRes;
         }
@@ -47,13 +47,13 @@ class MonthlyInterestRepayMode extends BaseCalculate
         //过滤产品数据
         $projectData = $this->transFormer->transformerProject($this->project);
         if($projectData['code']){
-            return funcReturn($projectData);
+            return $projectData;
         }
 
         //过滤订单数据
         $ordersData = $this->transFormer->transformerOrders($this->orders);
         if($ordersData['code']){
-            return funcReturn($projectData);
+            return $ordersData;
         }
         $this->project = $projectData['data'];
         $this->orders = $ordersData['data'];
